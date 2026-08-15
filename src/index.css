@@ -1,0 +1,245 @@
+/* ==========================================================================
+   PENDYALA SHANKAR — COMPUTER SCIENCE & SOFTWARE DEVELOPER PORTFOLIO
+   High Contrast & Maximum Legibility Design Tokens
+   ========================================================================== */
+
+:root {
+  /* Crisp Obsidian Dark Foundation with High Contrast */
+  --bg-primary: #0a0b0e;
+  --bg-secondary: #12141a;
+  --bg-surface: #181b24;
+  --bg-surface-elevated: #202430;
+  
+  --border-subtle: rgba(255, 255, 255, 0.12);
+  --border-hover: rgba(255, 255, 255, 0.3);
+  --grid-line: rgba(255, 255, 255, 0.03);
+
+  /* High Contrast Readability Colors */
+  --text-primary: #ffffff;
+  --text-secondary: #d1d5db; /* High-visibility light gray */
+  --text-muted: #9ca3af;     /* Legible secondary text */
+  
+  --accent: #ffffff;
+  --accent-cyan: #38bdf8;
+
+  --font-heading: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --container-max: 1320px;
+  --left-sidebar-width: 220px;
+  --section-gap-desktop: 8rem;
+  --section-gap-mobile: 4rem;
+}
+
+/* RESET & BASE */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.7;
+  overflow-x: hidden;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Minimal Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* SUBTLE BACKGROUND GRID */
+.architectural-grid-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1;
+  background-image: 
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 100px 100px;
+}
+
+/* MAIN LAYOUT WRAPPER WITH LEFT SIDEBAR MARGIN */
+.main-studio-content {
+  margin-left: var(--left-sidebar-width);
+  position: relative;
+  z-index: 2;
+  transition: margin-left 0.3s ease;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 2.5rem;
+}
+
+.section-padding {
+  padding: var(--section-gap-desktop) 0;
+  border-top: 1px solid var(--border-subtle);
+  position: relative;
+}
+
+/* EDITORIAL TYPOGRAPHY HIERARCHY */
+.section-num-tag {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  color: var(--accent-cyan);
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 600;
+}
+
+.editorial-display {
+  font-family: var(--font-heading);
+  font-size: clamp(3.2rem, 8.5vw, 6.5rem);
+  font-weight: 900;
+  color: var(--text-primary);
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.editorial-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 1.25rem;
+  text-transform: uppercase;
+}
+
+.editorial-subtitle {
+  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+  color: var(--text-secondary);
+  max-width: 720px;
+  line-height: 1.7;
+  font-weight: 400;
+}
+
+/* HIGH-CONTRAST READABLE CARDS */
+.studio-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  padding: 2.25rem;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.studio-card:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-surface);
+}
+
+/* BUTTONS & MONOSPACED TAGS */
+.scfo-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  padding: 0.85rem 1.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 2px;
+}
+
+.scfo-btn-primary {
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #ffffff;
+  font-weight: 800;
+}
+
+.scfo-btn-primary:hover {
+  background: transparent;
+  color: #ffffff;
+  border-color: #ffffff;
+}
+
+.scfo-btn-outline {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+}
+
+.scfo-btn-outline:hover {
+  border-color: var(--text-primary);
+  background: var(--bg-surface-elevated);
+}
+
+.scfo-pill {
+  font-family: var(--font-mono);
+  font-size: 0.775rem;
+  padding: 0.4rem 0.9rem;
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+}
+
+/* RESPONSIVE BREAKPOINTS */
+@media (max-width: 1024px) {
+  .main-studio-content {
+    margin-left: 0;
+  }
+  .container {
+    padding: 0 1.75rem;
+  }
+  .section-padding {
+    padding: 5.5rem 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.25rem;
+  }
+  .section-padding {
+    padding: var(--section-gap-mobile) 0;
+  }
+}
