@@ -22,7 +22,7 @@ A 3-time hackathon winner with experience as a Software Development Intern at La
     { label: "Hackathon Victories", value: "3x Winner", icon: "Trophy" },
     { label: "Engineering CPI", value: "8.90 / 10.0", icon: "Award" },
     { label: "Internship Completed", value: "LawVriksh", icon: "Briefcase" },
-    { label: "Core Projects Shipped", value: "3 Major", icon: "Code" }
+    { label: "Core Projects Shipped", value: "2 Major", icon: "Code" }
   ]
 };
 
@@ -84,8 +84,7 @@ export const CERTIFICATIONS = [
 export const PROJECT_CATEGORIES = [
   { id: "all", label: "All Projects" },
   { id: "fullstack_agri", label: "Web & Supply Chain" },
-  { id: "ai_cv", label: "AI & Computer Vision" },
-  { id: "edtech_ai", label: "EdTech & Assessment" }
+  { id: "ai_cv", label: "AI & Computer Vision" }
 ];
 
 export const PROJECTS = [
@@ -134,29 +133,6 @@ export const PROJECTS = [
       "Converts sign language gestures into text to enhance accessibility for hearing impaired users"
     ],
     contribution: "Deep Learning model development in Python, LSTM architecture design, OpenCV video preprocessing, and accuracy evaluation."
-  },
-  {
-    id: "gateprep-ai-buddy",
-    title: "GATEPrep AI Buddy",
-    subtitle: "AI-Based GATE Preparation Platform",
-    category: "edtech_ai",
-    featured: true,
-    badge: "AI Exam Platform",
-    date: "Apr 2025 – Present",
-    tags: ["React", "JavaScript", "RESTful APIs", "Database Design", "Authentication"],
-    githubUrl: "https://github.com/cs-techie",
-    liveUrl: null,
-    summary: "A full-stack exam preparation platform with Admin/Student dashboards, subject-wise syllabus management, and timed GATE mock test simulation.",
-    problem: "GATE aspirants lack realistic exam simulators with automated evaluation, timed assessments, and subject-wise analytics.",
-    solution: "Designed GATEPrep AI Buddy with a dynamic Mock Test system replicating real GATE conditions, secure authentication simulation, and scalable RESTful backend architecture.",
-    keyFeatures: [
-      "Admin & Student dedicated interactive dashboards",
-      "Structured subject-wise syllabus management & progress tracking",
-      "Dynamic Mock Test engine with timed assessments replicating real GATE exam conditions",
-      "Automated assessment evaluation & performance tracking analytics",
-      "Scalable RESTful backend architecture with clean code modular structure"
-    ],
-    contribution: "Full-Stack System Architecture, Dynamic Mock Test engine, Admin/Student Dashboards, and RESTful API backend."
   }
 ];
 
@@ -214,12 +190,12 @@ export const HACKATHONS = [
 ];
 
 export const TERMINAL_COMMANDS = {
-  help: "Available commands:\n  about        - View Pendyala Shankar's objective & background\n  education    - List education details & CPI metrics\n  experience   - View LawVriksh internship details\n  skills       - View technical skills & tools\n  projects     - List AgriConnect, Sign Language Translator, GATEPrep AI Buddy\n  certifications - View Google & Data Analytics certifications\n  contact      - Get email, phone, LinkedIn & GitHub\n  clear        - Clear terminal screen",
+  help: "Available commands:\n  about        - View Pendyala Shankar's objective & background\n  education    - List education details & CPI metrics\n  experience   - View LawVriksh internship details\n  skills       - View technical skills & tools\n  projects     - List AgriConnect, Sign Language Translator\n  certifications - View Google & Data Analytics certifications\n  contact      - Get email, phone, LinkedIn & GitHub\n  clear        - Clear terminal screen",
   about: PERSONAL_INFO.objective,
   education: "Education:\n  1. B.E CSE - MVSREC (2023-Present) | CPI: 8.90\n  2. Intermediate (MPC) - Ideal Junior College (2023) | CPI: 8.80\n  3. SSC - EUHS (2021) | CPI: 10.0",
   experience: "Work Experience:\n  Software Development Intern at LawVriksh (Sep 2025 - Nov 2025)\n  - Legal-tech web modules & user workflow automation\n  - Backend features, API optimization & JSON data communication\n  - Debugging, performance optimization & feature deployment",
   skills: "Technical Skills:\n  Languages: Python, Java, PHP, R, C language\n  Web Tech: HTML, CSS, JavaScript, Tailwind CSS, Bootstrap, React\n  Databases: MySQL, SQL Queries, Database Design\n  Data & Analytics: Tableau, PowerBI, EDA, Data Visualization\n  Tools: GitHub, VS Code, Jupyter Notebook\n  Core CS: OOPs, DBMS, RESTful APIs, Data Structures & Algorithms",
-  projects: "Core Projects:\n  1. AgriConnect (Hackathon Winner, Feb-Mar 2025) - Sustainable Agri Supply Chain\n  2. Sign Language Translator (Sept-Dec 2024) - LSTM Deep Learning ASL Translator (15 FPS, >90% Acc)\n  3. GATEPrep AI Buddy (Apr 2025-Present) - AI-Based GATE Exam Platform",
+  projects: "Core Projects:\n  1. AgriConnect (Hackathon Winner, Feb-Mar 2025) - Sustainable Agri Supply Chain\n  2. Sign Language Translator (Sept-Dec 2024) - LSTM Deep Learning ASL Translator (15 FPS, >90% Acc)",
   certifications: "Certifications:\n  - Google Analytics Certification\n  - Discover Data Analysis\n  - Database Programming",
   contact: `Contact Details:\n  Name: ${PERSONAL_INFO.name}\n  Email: ${PERSONAL_INFO.email}\n  Phone: ${PERSONAL_INFO.phone}\n  LinkedIn: ${PERSONAL_INFO.linkedin}\n  GitHub: ${PERSONAL_INFO.github}`,
   github: PERSONAL_INFO.github,

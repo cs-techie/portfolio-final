@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import SEO from './components/SEO';
 import CustomCursor from './components/CustomCursor';
 import Persistent3DVisual from './components/Persistent3DVisual';
 import LeftSidebarNav from './components/LeftSidebarNav';
@@ -33,7 +34,9 @@ function App() {
 
   return (
     <div style={{ minHeight: '100vh', position: 'relative', backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
-      
+      {/* SEO Engine */}
+      <SEO />
+
       {/* Refined Desktop Custom Cursor */}
       <CustomCursor />
 

@@ -1,0 +1,17 @@
+{
+  "short_name": "Shankar",
+  "name": "Pendyala Shankar | Software Developer Portfolio",
+  "description": "Portfolio of Pendyala Shankar (cs-techie) - Computer Science Engineering Student, Full-Stack & AI Software Developer, 3x Hackathon Winner.",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#030712",
+  "theme_color": "#030712",
+  "display": "standalone",
+  "orientation": "portrait"
+}

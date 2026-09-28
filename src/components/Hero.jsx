@@ -100,6 +100,7 @@ const Hero = ({ openTerminal }) => {
             href="#projects"
             onClick={() => soundFx.playClick()}
             className="scfo-btn scfo-btn-primary"
+            aria-label="View Shankar Pendyala's featured software projects"
           >
             <span>VIEW PROJECTS [03]</span>
             <ArrowDownRight size={15} />
@@ -111,6 +112,7 @@ const Hero = ({ openTerminal }) => {
               openTerminal();
             }}
             className="scfo-btn scfo-btn-outline"
+            aria-label="Open interactive CLI terminal modal"
           >
             <Terminal size={14} />
             <span>TERMINAL CLI (CTRL+K)</span>
