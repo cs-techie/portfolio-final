@@ -6,7 +6,7 @@ import { soundFx } from '../utils/audio';
 const TerminalModal = ({ isOpen, onClose }) => {
   const [input, setInput] = useState('');
   const [history, setHistory] = useState([
-    { type: 'system', content: 'Pendyala Shankar CLI [Version 1.0.0]' },
+    { type: 'system', content: 'Shankar Pendyala CLI [Version 1.0.0]' },
     { type: 'system', content: 'Type "help" to view available commands.\n' },
   ]);
   const [commandHistory, setCommandHistory] = useState([]);

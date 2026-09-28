@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 import { PERSONAL_INFO, PROJECTS } from '../utils/data';
 
 const SEO = ({
-  title = "Pendyala Shankar | Full-Stack & AI Software Developer | 3x Hackathon Winner",
-  description = "Portfolio of Pendyala Shankar (cs-techie) - Computer Science Engineering Student at MVSREC (CPI 8.90), Software Developer Intern at LawVriksh, 3x Hackathon Winner. Specializing in Python, React, RESTful APIs, MySQL, and Data Analytics.",
-  keywords = "Pendyala Shankar, Shankar Pendyala, cs-techie, MVSREC, Software Developer, Full-Stack Developer, AI Developer, React, Python, LawVriksh Intern, AgriConnect, ASL Sign Language Translator, Data Analytics, Hyderabad Software Engineer",
-  url = "https://shankarpendyala.me/",
-  ogImage = "https://shankarpendyala.me/og-image.png"
+  title = "Shankar Pendyala | Full-Stack & AI Developer",
+  description = "Shankar Pendyala is a full-stack and AI software developer from Hyderabad, 3x hackathon winner. Explore his projects in Python, React and data analytics.",
+  keywords = "Shankar Pendyala, cs-techie, MVSREC, Software Developer, Full-Stack Developer, AI Developer, React, Python, LawVriksh Intern, AgriConnect, ASL Sign Language Translator, Data Analytics, Hyderabad Software Engineer, Also known as Pendyala Shankar",
+  url = "https://www.shankarpendyala.me/",
+  ogImage = "https://www.shankarpendyala.me/og-image.png"
 }) => {
   useEffect(() => {
     // 1. Update Document Title
@@ -57,7 +57,6 @@ const SEO = ({
     setMetaTag('name', 'twitter:title', title);
     setMetaTag('name', 'twitter:description', description);
     setMetaTag('name', 'twitter:image', ogImage);
-    setMetaTag('name', 'twitter:creator', `@${PERSONAL_INFO.handle}`);
 
     // Canonical Link
     setLinkTag('canonical', url);
@@ -70,7 +69,8 @@ const SEO = ({
           "@type": "Person",
           "@id": `${url}#person`,
           "name": PERSONAL_INFO.name,
-          "alternateName": ["Shankar Pendyala", PERSONAL_INFO.handle],
+          "alternateName": ["Pendyala Shankar", PERSONAL_INFO.handle],
+          "image": ogImage,
           "jobTitle": "Full-Stack & AI Software Developer",
           "description": PERSONAL_INFO.bio.replace(/\n+/g, ' '),
           "url": url,
@@ -106,7 +106,7 @@ const SEO = ({
           "address": {
             "@type": "PostalAddress",
             "addressLocality": "Hyderabad",
-            "addressCountry": "India"
+            "addressCountry": "IN"
           }
         },
         {

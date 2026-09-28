@@ -1,7 +1,7 @@
-// Pendyala Shankar - Master Resume Data (Single Source of Truth)
+// Shankar Pendyala - Master Resume Data (Single Source of Truth)
 
 export const PERSONAL_INFO = {
-  name: "Pendyala Shankar",
+  name: "Shankar Pendyala",
   preferredName: "Shankar",
   handle: "cs-techie",
   title: "Computer Science Engineering Student | Data Analysis & AI-Driven Developer",
@@ -190,7 +190,7 @@ export const HACKATHONS = [
 ];
 
 export const TERMINAL_COMMANDS = {
-  help: "Available commands:\n  about        - View Pendyala Shankar's objective & background\n  education    - List education details & CPI metrics\n  experience   - View LawVriksh internship details\n  skills       - View technical skills & tools\n  projects     - List AgriConnect, Sign Language Translator\n  certifications - View Google & Data Analytics certifications\n  contact      - Get email, phone, LinkedIn & GitHub\n  clear        - Clear terminal screen",
+  help: "Available commands:\n  about        - View Shankar Pendyala's objective & background\n  education    - List education details & CPI metrics\n  experience   - View LawVriksh internship details\n  skills       - View technical skills & tools\n  projects     - List AgriConnect, Sign Language Translator\n  certifications - View Google & Data Analytics certifications\n  contact      - Get email, phone, LinkedIn & GitHub\n  clear        - Clear terminal screen",
   about: PERSONAL_INFO.objective,
   education: "Education:\n  1. B.E CSE - MVSREC (2023-Present) | CPI: 8.90\n  2. Intermediate (MPC) - Ideal Junior College (2023) | CPI: 8.80\n  3. SSC - EUHS (2021) | CPI: 10.0",
   experience: "Work Experience:\n  Software Development Intern at LawVriksh (Sep 2025 - Nov 2025)\n  - Legal-tech web modules & user workflow automation\n  - Backend features, API optimization & JSON data communication\n  - Debugging, performance optimization & feature deployment",

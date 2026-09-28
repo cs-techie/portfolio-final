@@ -38,8 +38,8 @@ const Hero = ({ openTerminal }) => {
           className="editorial-display"
           style={{ marginBottom: '1.5rem', maxWidth: '900px' }}
         >
-          PENDYALA <br />
-          <span style={{ color: 'var(--text-secondary)' }}>SHANKAR</span>
+          SHANKAR <br />
+          <span style={{ color: 'var(--text-secondary)' }}>PENDYALA</span>
         </motion.h1>
 
         {/* Clear Subtitle Role Tag */}
