@@ -1,160 +1,83 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Minus } from 'lucide-react';
-import { soundFx } from '../utils/audio';
+"use client";
 
-const faqsList = [
-  {
-    q: "What role and type of software opportunity are you seeking?",
-    a: "I am actively seeking a Software Development Intern or Junior Full-Stack Engineer position. I am open to remote, hybrid, or on-site roles in Hyderabad or pan-India starting immediately for Q3/Q4 2026.",
-  },
-  {
-    q: "What technical stack and languages do you specialize in?",
-    a: "My primary tech stack includes Python, React.js, JavaScript (ES6+), Node.js, RESTful APIs, MySQL, and Data Analytics tools (Tableau, PowerBI, Pandas). I also have foundational experience in C, Java, and R.",
-  },
-  {
-    q: "What was your core contribution during your internship at LawVriksh?",
-    a: "At LawVriksh, I developed legal-tech web application components, structured JSON data flows for backend microservices, optimized RESTful API routes, and conducted database schema refactoring for improved query speeds.",
-  },
-  {
-    q: "Tell us about your 3 hackathon victories and what you built.",
-    a: "I won 3 national-level hackathons by building production-focused solutions: (1) AgriConnect (Smart Agriculture Portal), (2) AntiScamDefender101 (Real-time phishing & scam detection tool), and (3) Book2Resell (Peer-to-peer textbook marketplace with automated pricing).",
-  },
-  {
-    q: "Does your software work responsively across desktop, tablet, and mobile?",
-    a: "Yes. Every UI application I build strictly enforces fluid grid responsive design, WCAG contrast accessibility, keyboard shortcuts (such as Ctrl+K CLI modal), and a strict performance budget.",
-  },
-];
+import { useState } from "react";
+import { motion } from "framer-motion";
 
-const Faq = () => {
+export default function Faq() {
   const [openIndex, setOpenIndex] = useState(0);
 
-  const toggleFaq = (index) => {
-    soundFx.playClick();
-    setOpenIndex(openIndex === index ? null : index);
-  };
+  const faqs = [
+    {
+      q: "WHAT ROLES ARE YOU CURRENTLY SEEKING?",
+      a: "I am actively seeking a Software Development Intern or Junior Software Engineer role where I can build production-ready full-stack web applications, AI integrations, and data engineering pipelines."
+    },
+    {
+      q: "WHAT IS YOUR HACKATHON RECORD & STANDOUT PROJECTS?",
+      a: "I am a 3-time Hackathon Winner! My standout project was AgriConnect — a full-stack agricultural supply chain platform connecting farmers directly with buyers using RESTful APIs, responsive React interfaces, and database matching."
+    },
+    {
+      q: "WHAT WAS YOUR ROLE DURING THE LAWVRIKSH SDE INTERNSHIP?",
+      a: "At LawVriksh, I developed core legal-tech web modules, optimized backend RESTful API endpoints, integrated structured JSON data contracts, and automated legal document workflows."
+    },
+    {
+      q: "WHAT ARE YOUR CORE TECHNICAL STACK STRENGTHS?",
+      a: "My primary stack covers Python, JavaScript, React 19, Next.js 16, Tailwind CSS, FastAPI, RESTful APIs, MySQL, and Data Analytics tools (Tableau, PowerBI, EDA, OpenCV, Deep Learning)."
+    }
+  ];
 
   return (
-    <section id="faq" className="section-padding" style={{ position: 'relative', zIndex: 1 }}>
-      <div className="container">
+    <section id="faq" className="py-24 relative bg-[#0d121d] text-slate-100 border-t border-slate-800/60">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
-        {/* Section Header */}
-        <div style={{ marginBottom: '3.5rem' }}>
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="section-tag"
-          >
-            08 // FREQUENTLY ASKED QUESTIONS
-          </motion.div>
+        {/* VSK Section Header */}
+        <div className="space-y-3 max-w-4xl">
+          <span className="text-xs font-condensed font-black uppercase tracking-[0.2em] text-[#FF4D27] bg-[#FF4D27]/15 px-4 py-1.5 rounded-full border border-[#FF4D27]/40">
+            FREQUENTLY ASKED QUESTIONS
+          </span>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="editorial-title"
-          >
-            Klarheit Vorab · FAQ
-          </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="editorial-subtitle"
-          >
-            Clear answers regarding engineering workflow, technical stack, internship availability, and hackathon projects.
-          </motion.p>
+          <h2 className="font-condensed font-black text-4xl sm:text-6xl lg:text-7xl leading-[0.95] tracking-[0.08em] uppercase text-white">
+            CLEAR ANSWERS ON <span className="text-highlight-yellow">ROLES</span>, <span className="text-highlight-emerald">HACKATHONS</span> & <span className="text-highlight-pink">TECHNICAL EXPERIENCE</span>.
+          </h2>
         </div>
 
-        {/* Accordion Stack */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '960px' }}>
-          {faqsList.map((faq, index) => {
+        {/* VSK Style Accordion Cards */}
+        <div className="space-y-4">
+          {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
             return (
-              <motion.div
-                key={faq.q}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.08 }}
-                className="scfo-glass-card"
-                style={{ padding: 0 }}
+              <div
+                key={index}
+                className="rounded-3xl bg-[#141a26] border border-slate-800 overflow-hidden transition-all duration-300 shadow-xl"
               >
                 <button
-                  onClick={() => toggleFaq(index)}
-                  style={{
-                    width: '100%',
-                    padding: '1.5rem',
-                    background: 'transparent',
-                    border: 'none',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    gap: '1rem',
-                    textAlign: 'left',
-                    cursor: 'pointer',
-                    color: 'var(--text-primary)',
-                  }}
+                  onClick={() => setOpenIndex(isOpen ? null : index)}
+                  className="w-full p-6 sm:p-8 flex items-center justify-between text-left group hover:bg-[#182030] transition-colors"
                 >
-                  <span
-                    style={{
-                      fontFamily: 'var(--font-heading)',
-                      fontSize: '1.15rem',
-                      fontWeight: 700,
-                      lineHeight: 1.3,
-                    }}
-                  >
-                    {faq.q}
-                  </span>
+                  <div className="flex items-center gap-4">
+                    <span className="text-xs font-condensed font-black text-[#FF4D27] px-3.5 py-1 rounded-full bg-[#FF4D27]/15 border border-[#FF4D27]/40 tracking-[0.15em]">
+                      0{index + 1}
+                    </span>
+                    <h3 className="font-condensed font-black text-xl sm:text-3xl text-white group-hover:text-[#FF4D27] transition-colors tracking-[0.08em] uppercase">
+                      {faq.q}
+                    </h3>
+                  </div>
 
-                  <div
-                    style={{
-                      width: '28px',
-                      height: '28px',
-                      borderRadius: '50%',
-                      background: isOpen ? 'var(--accent)' : 'var(--bg-surface-elevated)',
-                      color: isOpen ? '#000' : 'var(--text-secondary)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      flexShrink: 0,
-                      transition: 'all 0.25s ease',
-                    }}
-                  >
-                    {isOpen ? <Minus size={16} /> : <Plus size={16} />}
+                  <div className="w-10 h-10 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center font-condensed font-black text-2xl text-white group-hover:border-[#FF4D27] group-hover:text-[#FF4D27] transition-all shrink-0">
+                    {isOpen ? "-" : "+"}
                   </div>
                 </button>
 
-                <AnimatePresence>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                      style={{ overflow: 'hidden' }}
-                    >
-                      <div
-                        style={{
-                          padding: '0 1.5rem 1.5rem 1.5rem',
-                          color: 'var(--text-secondary)',
-                          fontSize: '0.95rem',
-                          lineHeight: 1.65,
-                          borderTop: '1px solid var(--border-subtle)',
-                          paddingTop: '1.25rem',
-                        }}
-                      >
-                        {faq.a}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
+                {isOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    className="px-6 pb-6 sm:px-8 sm:pb-8 pt-0 font-grotesk text-slate-100 font-medium text-sm sm:text-base border-t border-slate-800/60 leading-relaxed tracking-wide"
+                  >
+                    <p className="pt-4">{faq.a}</p>
+                  </motion.div>
+                )}
+              </div>
             );
           })}
         </div>
@@ -162,6 +85,4 @@ const Faq = () => {
       </div>
     </section>
   );
-};
-
-export default Faq;
+}

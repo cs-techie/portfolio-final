@@ -1,96 +1,267 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { WORK_EXPERIENCE } from '../utils/data';
+"use client";
+import { WORK_EXPERIENCE, EDUCATION } from "@/utils/data";
 
-const Experience = () => {
+export default function Experience() {
   return (
-    <section id="experience" className="section-padding" style={{ position: 'relative', zIndex: 2 }}>
-      <div className="container">
-        
-        {/* Section Header */}
-        <div style={{ marginBottom: '4rem' }}>
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="section-num-tag"
-          >
-            04 — EXPERIENCE
-          </motion.div>
+    <section className="section journey" id="experience">
+        <div className="journey-layout">
+            
+            {/* LEFT: Sticky Header */}
+            <div className="journey-sidebar reveal">
+                <span className="section-kicker">06 / RESUME</span>
+                <h2>
+                    The journey<br/>
+                    behind the<br/>
+                    <em>work.</em>
+                </h2>
+                <p>
+                    A comprehensive look at my professional experience, academic background, and the skills I've developed along the way.
+                </p>
+                
+                <div className="resume-buttons">
+                    <a href="/assets/resume.pdf" target="_blank" className="btn-download">
+                        View Resume ↗
+                    </a>
+                </div>
+            </div>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="editorial-title"
-          >
-            INTERNSHIPS & TECHNICAL ROLES
-          </motion.h2>
+            {/* RIGHT: Timeline Content */}
+            <div className="journey-content reveal">
+                
+                {/* EXPERIENCE SECTION */}
+                <div className="timeline-section">
+                    <h3 className="timeline-title">EXPERIENCE</h3>
+                    
+                    <div className="timeline-list">
+                        {WORK_EXPERIENCE.map((job, idx) => (
+                            <div className="timeline-item" key={idx}>
+                                <div className="item-header">
+                                    <div className="item-role">
+                                        <h4>{job.role}</h4>
+                                        <span className="item-company">— {job.company}</span>
+                                    </div>
+                                    <div className="item-date">{job.period}</div>
+                                </div>
+                                
+                                <ul className="item-bullets">
+                                    {job.highlights.map((point, i) => (
+                                        <li key={i}>{point}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
+                    </div>
+                </div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="editorial-subtitle"
-          >
-            Practical software engineering experience, backend API optimization, and feature deployment.
-          </motion.p>
+                {/* EDUCATION SECTION */}
+                <div className="timeline-section" style={{ marginTop: '80px' }}>
+                    <h3 className="timeline-title">EDUCATION</h3>
+                    
+                    <div className="timeline-list">
+                        {EDUCATION.map((edu, idx) => (
+                            <div className="timeline-item" key={idx}>
+                                <div className="item-header">
+                                    <div className="item-role">
+                                        <h4>{edu.degree}</h4>
+                                    </div>
+                                    <div className="item-date">{edu.year}</div>
+                                </div>
+                                <div className="item-institute">{edu.institute}</div>
+                                <div className="item-cpi">{edu.cpi}</div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+            </div>
         </div>
 
-        {/* Experience Timeline Stack */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
-          {WORK_EXPERIENCE.map((exp, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="studio-card"
-              style={{ borderLeft: '3px solid var(--text-primary)' }}
-            >
-              <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1rem', marginBottom: '1.25rem' }}>
-                <div>
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '0.35rem' }}>
-                    ROLE & ORGANIZATION
-                  </div>
-                  <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.75rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '0.25rem' }}>
-                    {exp.role}
-                  </h3>
-                  <div style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-secondary)' }}>
-                    {exp.company}
-                  </div>
-                </div>
+        <style jsx>{`
+            .journey {
+                padding: 120px 5vw;
+                background: #020617;
+                color: #fff;
+                border-top: 1px solid rgba(255,255,255,0.05);
+            }
 
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-                  {exp.period} · {exp.type}
-                </div>
-              </div>
+            .journey-layout {
+                max-width: 1300px;
+                margin: 0 auto;
+                display: grid;
+                grid-template-columns: 1fr 1.8fr;
+                gap: 80px;
+                align-items: flex-start;
+            }
 
-              <div style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: '1.25rem' }}>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.725rem', color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '0.75rem' }}>
-                  KEY RESPONSIBILITIES
-                </div>
+            /* SIDEBAR */
+            .journey-sidebar {
+                position: sticky;
+                top: 120px;
+            }
 
-                <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.65rem', color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: 1.65 }}>
-                  {exp.highlights.map((point, pIdx) => (
-                    <li key={pIdx} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem' }}>
-                      <span style={{ color: 'var(--text-primary)' }}>—</span>
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+            .section-kicker {
+                display: block;
+                font-size: 13px;
+                font-weight: 700;
+                letter-spacing: 0.15em;
+                color: #38bdf8;
+                margin-bottom: 20px;
+            }
 
-      </div>
+            .journey-sidebar h2 {
+                font-size: clamp(48px, 5vw, 64px);
+                font-weight: 800;
+                line-height: 1.05;
+                letter-spacing: -0.03em;
+                margin-bottom: 30px;
+            }
+
+            .journey-sidebar h2 em {
+                color: #38bdf8;
+                font-style: normal;
+            }
+
+            .journey-sidebar p {
+                font-size: 18px;
+                line-height: 1.6;
+                color: rgba(255, 255, 255, 0.6);
+                max-width: 400px;
+                margin-bottom: 40px;
+            }
+
+            .btn-download {
+                display: inline-flex;
+                align-items: center;
+                padding: 16px 32px;
+                background: rgba(255,255,255,0.05);
+                border: 1px solid rgba(255,255,255,0.1);
+                color: #fff;
+                font-size: 14px;
+                font-weight: 600;
+                letter-spacing: 0.05em;
+                text-transform: uppercase;
+                text-decoration: none;
+                border-radius: 50px;
+                transition: all 0.3s ease;
+            }
+
+            .btn-download:hover {
+                background: #fff;
+                color: #020617;
+                transform: translateY(-2px);
+            }
+
+            /* TIMELINE CONTENT */
+            .timeline-title {
+                font-size: 24px;
+                font-weight: 700;
+                letter-spacing: 0.05em;
+                color: rgba(255,255,255,0.4);
+                margin-bottom: 40px;
+                padding-bottom: 20px;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+
+            .timeline-list {
+                display: flex;
+                flex-direction: column;
+                gap: 50px;
+            }
+
+            .timeline-item {
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .item-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .item-role {
+                display: flex;
+                align-items: baseline;
+                gap: 12px;
+                flex-wrap: wrap;
+            }
+
+            .item-role h4 {
+                font-size: 22px;
+                font-weight: 700;
+                color: #fff;
+                margin: 0;
+            }
+
+            .item-company {
+                font-size: 18px;
+                color: #38bdf8;
+                font-weight: 500;
+            }
+
+            .item-date {
+                font-family: monospace;
+                font-size: 14px;
+                color: rgba(255,255,255,0.5);
+                background: rgba(255,255,255,0.05);
+                padding: 4px 12px;
+                border-radius: 20px;
+            }
+
+            .item-bullets {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .item-bullets li {
+                position: relative;
+                padding-left: 20px;
+                font-size: 16px;
+                line-height: 1.7;
+                color: rgba(255,255,255,0.7);
+            }
+
+            .item-bullets li::before {
+                content: "•";
+                position: absolute;
+                left: 0;
+                color: #38bdf8;
+                font-weight: bold;
+            }
+
+            .item-institute {
+                font-size: 18px;
+                color: rgba(255,255,255,0.8);
+            }
+
+            .item-cpi {
+                font-family: monospace;
+                font-size: 14px;
+                color: rgba(255,255,255,0.5);
+            }
+
+            @media (max-width: 900px) {
+                .journey-layout {
+                    grid-template-columns: 1fr;
+                    gap: 60px;
+                }
+                .journey-sidebar {
+                    position: relative;
+                    top: 0;
+                }
+                .item-header {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+            }
+        `}</style>
     </section>
   );
-};
-
-export default Experience;
+}

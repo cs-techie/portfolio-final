@@ -1,35 +1,16 @@
-# Pendyala Shankar — Developer Portfolio
+# React + Vite
 
-Computer Science Engineering student at MVSREC (CPI 8.90), software developer, and 3-time hackathon winner.
+This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
 
-## 🚀 Live Demo & Portfolio
+Currently, two official plugins are available:
 
-Built with React, Vite, Three.js WebGL 3D graphics, Framer Motion, and Tailwind CSS.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-## 🛠️ Features & Stack
+## React Compiler
 
-- **Three.js WebGL Centerpiece**: Real-time 3D software monolith translating on scroll.
-- **Architectural Grid System**: High contrast obsidian monochrome art direction.
-- **Left Sidebar Navigation**: Fixed vertical navigation with active scroll tracking.
-- **Developer CLI Terminal**: Interactive terminal modal (`Ctrl+K`).
-- **Tech Stack**: React 19, Three.js, Lucide Icons, Framer Motion, Vite.
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## 📦 Local Development
+## Expanding the Oxlint configuration
 
-```bash
-# Clone the repository
-git clone https://github.com/cs-techie/portfolio-final.git
-
-# Install dependencies
-npm install
-
-# Start dev server
-npm run dev
-
-# Build for production
-npm run build
-```
-
-## 📄 License
-
-© Pendyala Shankar. All rights reserved.
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.

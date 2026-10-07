@@ -1,260 +1,355 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
-import { GithubIcon } from './BrandIcons';
-import { PROJECTS } from '../utils/data';
-import ProjectModal from './ProjectModal';
-import { soundFx } from '../utils/audio';
+"use client";
+import { PROJECTS } from "@/utils/data";
+import { ArrowUpRight } from "lucide-react";
 
-const Projects = () => {
-  const [selectedProject, setSelectedProject] = useState(null);
-
+export default function Projects() {
   return (
-    <section id="projects" className="section-padding" style={{ position: 'relative', zIndex: 2 }}>
-      <div className="container">
+    <section className="section editorial-projects" id="projects">
+        <div className="projects-header reveal">
+            <span className="eyebrow">SELECTED WORK</span>
+            <h2>Featured <em>Projects.</em></h2>
+        </div>
         
-        {/* Section Header */}
-        <div style={{ marginBottom: '5.5rem' }}>
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="section-num-tag"
-          >
-            03 — MY PROJECTS
-          </motion.div>
+        <div className="projects-container">
+            {PROJECTS.map((project, index) => {
+                const isEven = index % 2 === 0;
+                const titleInitial = project.title.substring(0, 2).toUpperCase();
 
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="editorial-title"
-          >
-            FEATURED PROJECTS
-          </motion.h2>
+                return (
+                    <div 
+                        key={project.id || index} 
+                        className={`project-row reveal ${isEven ? 'row-even' : 'row-odd'}`}
+                    >
+                        {/* Visual / Mockup Area */}
+                        <div className="project-visual">
+                            <div className="visual-inner">
+                                {project.image ? (
+                                    <div className="project-image-wrapper">
+                                        <img src={project.image} alt={project.title} className="project-img" />
+                                    </div>
+                                ) : (
+                                    <>
+                                        <div className="abstract-bg">
+                                            <span className="huge-initial">{titleInitial}</span>
+                                        </div>
+                                        <div className="visual-glass">
+                                            <div className="browser-dots">
+                                                <span></span><span></span><span></span>
+                                            </div>
+                                            <div className="glass-title">{project.title.toLowerCase().replace(/\s+/g, '-')}</div>
+                                        </div>
+                                    </>
+                                )}
+                            </div>
+                        </div>
+
+                        {/* Info Area */}
+                        <div className="project-info">
+                            <div className="project-num">
+                                0{index + 1}
+                                <span className="project-year">{project.date?.substring(0, 4) || "2024"}</span>
+                            </div>
+                            
+                            <h3>{project.title}</h3>
+                            
+                            <div className="project-tags">
+                                {project.tags?.slice(0, 4).map((tag, i) => (
+                                    <span key={i} className="tag">{tag}</span>
+                                ))}
+                            </div>
+                            
+                            <p className="project-desc">{project.summary}</p>
+                            
+                            <a 
+                                href={project.githubUrl || "#"} 
+                                target="_blank" 
+                                rel="noreferrer" 
+                                className="view-btn"
+                            >
+                                View Project <ArrowUpRight size={18} />
+                            </a>
+                        </div>
+                    </div>
+                );
+            })}
         </div>
 
-        {/* Alternating Case Study Compositions */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '8rem' }}>
-          {PROJECTS.map((project, idx) => {
-            const isEven = idx % 2 === 0;
-            const isFullWidth = idx === 2;
-
-            if (isFullWidth) {
-              // Project 03: Full-Width Visual / Info Below
-              return (
-                <motion.div
-                  key={project.id}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                  style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: '4rem' }}
-                >
-                  <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1.5rem', marginBottom: '2.5rem' }}>
-                    <div>
-                      <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '0.5rem', fontWeight: 600 }}>
-                        PROJECT 0{idx + 1} — {project.date}
-                      </div>
-                      <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '2.75rem', fontWeight: 900, color: '#ffffff', textTransform: 'uppercase' }}>
-                        {project.title}
-                      </h3>
-                    </div>
-
-                    <span className="scfo-pill">{project.badge}</span>
-                  </div>
-
-                  {/* Full-Width Visual Container */}
-                  <div
-                    data-cursor="view"
-                    onClick={() => {
-                      soundFx.playChime();
-                      setSelectedProject(project);
-                    }}
-                    className="project-visual-container studio-card"
-                    style={{
-                      height: '380px',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'center',
-                      padding: '3.5rem',
-                      marginBottom: '3rem',
-                      background: 'linear-gradient(135deg, var(--bg-surface-elevated) 0%, var(--bg-secondary) 100%)',
-                      cursor: 'pointer',
-                    }}
-                  >
-                    <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem', color: 'var(--accent-cyan)', marginBottom: '0.75rem', fontWeight: 700 }}>
-                      PROJECT ARCHITECTURE & EXAM SIMULATOR
-                    </div>
-                    <div style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.8rem, 4.5vw, 3rem)', fontWeight: 800, color: '#ffffff', lineHeight: 1.15, maxWidth: '850px' }}>
-                      {project.subtitle}
-                    </div>
-                  </div>
-
-                  {/* Info Row Below */}
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '3.5rem' }}>
-                    <div>
-                      <p style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', lineHeight: 1.7, marginBottom: '1.5rem' }}>
-                        {project.summary}
-                      </p>
-                      <div style={{ fontSize: '0.95rem', color: '#ffffff', borderLeft: '2px solid var(--accent-cyan)', paddingLeft: '1.25rem', lineHeight: 1.6 }}>
-                        <strong>My Contribution: </strong>{project.contribution}
-                      </div>
-                    </div>
-
-                    <div>
-                      <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '1rem', fontWeight: 600 }}>
-                        TECHNOLOGIES & REPOSITORY
-                      </div>
-                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '2.5rem' }}>
-                        {project.tags.map((t) => (
-                          <span key={t} className="scfo-pill">{t}</span>
-                        ))}
-                      </div>
-
-                      <div style={{ display: 'flex', gap: '1rem' }}>
-                        <button
-                          onClick={() => {
-                            soundFx.playChime();
-                            setSelectedProject(project);
-                          }}
-                          className="scfo-btn scfo-btn-primary"
-                        >
-                          <span>VIEW DETAILS</span>
-                          <ArrowUpRight size={14} />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              );
+        <style jsx>{`
+            .editorial-projects {
+                padding: 120px 5vw;
+                background: #060913;
+                position: relative;
             }
 
-            // Project 01 & 02 Alternating Compositions
-            return (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
-                  gap: '4.5rem',
-                  alignItems: 'center',
-                  borderTop: '1px solid var(--border-subtle)',
-                  paddingTop: '4.5rem',
-                }}
-              >
-                {/* Visual Block */}
-                <div style={{ order: isEven ? 1 : 2 }}>
-                  <div
-                    data-cursor="view"
-                    onClick={() => {
-                      soundFx.playChime();
-                      setSelectedProject(project);
-                    }}
-                    className="project-visual-container studio-card"
-                    style={{
-                      minHeight: '400px',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'space-between',
-                      background: 'var(--bg-surface)',
-                      cursor: 'pointer',
-                    }}
-                  >
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <span style={{ fontFamily: 'var(--font-heading)', fontSize: '2.75rem', fontWeight: 900, color: 'var(--text-muted)' }}>
-                        0{idx + 1}
-                      </span>
-                      <span className="scfo-pill">{project.badge}</span>
-                    </div>
+            .projects-header {
+                text-align: center;
+                margin-bottom: 120px;
+            }
 
-                    <div>
-                      <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--accent-cyan)', marginBottom: '0.5rem', fontWeight: 700 }}>
-                        FEATURED PROJECT
-                      </div>
-                      <h4 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.85rem', fontWeight: 800, color: '#ffffff', lineHeight: 1.25 }}>
-                        {project.subtitle}
-                      </h4>
-                    </div>
+            .eyebrow {
+                display: block;
+                font-size: 13px;
+                font-weight: 700;
+                letter-spacing: 0.15em;
+                color: #38bdf8;
+                margin-bottom: 20px;
+                text-transform: uppercase;
+            }
 
-                    <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--text-muted)', borderTop: '1px solid var(--border-subtle)', paddingTop: '1rem', fontWeight: 600 }}>
-                      {project.date} · COMPLETED
-                    </div>
-                  </div>
-                </div>
+            .projects-header h2 {
+                font-size: clamp(40px, 6vw, 64px);
+                font-weight: 800;
+                line-height: 1.1;
+                color: #fff;
+                letter-spacing: -0.02em;
+            }
 
-                {/* Details Block */}
-                <div style={{ order: isEven ? 2 : 1 }}>
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '0.5rem', fontWeight: 600 }}>
-                    PROJECT 0{idx + 1}
-                  </div>
+            .projects-container {
+                max-width: 1300px;
+                margin: 0 auto;
+                display: flex;
+                flex-direction: column;
+                gap: 150px;
+            }
 
-                  <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '2.75rem', fontWeight: 900, color: '#ffffff', textTransform: 'uppercase', marginBottom: '1.25rem' }}>
-                    {project.title}
-                  </h3>
+            .project-row {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 80px;
+                align-items: center;
+            }
 
-                  <p style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', lineHeight: 1.7, marginBottom: '2rem' }}>
-                    {project.summary}
-                  </p>
+            .row-odd {
+                direction: rtl; /* flips the grid columns */
+            }
 
-                  <div style={{ marginBottom: '2rem' }}>
-                    <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--accent-cyan)', textTransform: 'uppercase', marginBottom: '0.75rem', fontWeight: 700 }}>
-                      MY CONTRIBUTION
-                    </div>
-                    <div style={{ fontSize: '0.95rem', color: '#ffffff', borderLeft: '2px solid var(--accent-cyan)', paddingLeft: '1rem', lineHeight: 1.6 }}>
-                      {project.contribution}
-                    </div>
-                  </div>
+            .row-odd > * {
+                direction: ltr; /* resets text direction inside */
+            }
 
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '2.5rem' }}>
-                    {project.tags.map((t) => (
-                      <span key={t} className="scfo-pill">{t}</span>
-                    ))}
-                  </div>
+            /* VISUAL */
+            .project-visual {
+                position: relative;
+                width: 100%;
+                aspect-ratio: 4 / 3;
+                perspective: 1000px;
+            }
 
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
-                    <button
-                      onClick={() => {
-                        soundFx.playChime();
-                        setSelectedProject(project);
-                      }}
-                      className="scfo-btn scfo-btn-primary"
-                    >
-                      <span>VIEW DETAILS</span>
-                      <ArrowUpRight size={14} />
-                    </button>
+            .visual-inner {
+                width: 100%;
+                height: 100%;
+                border-radius: 24px;
+                background: linear-gradient(145deg, #0f172a, #020617);
+                border: 1px solid rgba(255, 255, 255, 0.05);
+                box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+                position: relative;
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+                transform-style: preserve-3d;
+            }
 
-                    {project.githubUrl && (
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="scfo-btn scfo-btn-outline"
-                      >
-                        <GithubIcon size={14} />
-                        <span>GITHUB</span>
-                      </a>
-                    )}
-                  </div>
-                </div>
+            .project-row:hover .visual-inner {
+                transform: scale(1.03) rotateY(2deg);
+            }
 
-              </motion.div>
-            );
-          })}
-        </div>
+            .row-odd:hover .visual-inner {
+                transform: scale(1.03) rotateY(-2deg);
+            }
 
-        {/* Modal View */}
-        <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
+            .project-image-wrapper {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+            }
 
-      </div>
+            .project-img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                opacity: 0.9;
+                transition: opacity 0.6s ease, transform 0.6s ease;
+            }
+
+            .project-row:hover .project-img {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+
+            .abstract-bg {
+                position: absolute;
+                inset: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0.15;
+            }
+
+            .huge-initial {
+                font-size: 280px;
+                font-weight: 900;
+                color: #38bdf8;
+                font-family: 'Inter', sans-serif;
+                letter-spacing: -0.05em;
+                background: linear-gradient(135deg, #38bdf8, #818cf8);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                filter: blur(4px);
+                transition: filter 0.6s ease, transform 0.6s ease;
+            }
+
+            .project-row:hover .huge-initial {
+                filter: blur(8px);
+                transform: scale(1.1);
+            }
+
+            .visual-glass {
+                position: relative;
+                width: 80%;
+                height: 70%;
+                background: rgba(15, 23, 42, 0.4);
+                backdrop-filter: blur(12px);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                border-radius: 16px;
+                padding: 20px;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+                transform: translateZ(30px);
+                display: flex;
+                flex-direction: column;
+            }
+
+            .browser-dots {
+                display: flex;
+                gap: 6px;
+                margin-bottom: 20px;
+            }
+
+            .browser-dots span {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background: #334155;
+            }
+            .browser-dots span:nth-child(1) { background: #ef4444; }
+            .browser-dots span:nth-child(2) { background: #eab308; }
+            .browser-dots span:nth-child(3) { background: #22c55e; }
+
+            .glass-title {
+                margin-top: auto;
+                margin-bottom: auto;
+                text-align: center;
+                font-family: monospace;
+                font-size: 14px;
+                color: rgba(255,255,255,0.3);
+                letter-spacing: 0.05em;
+            }
+
+            /* INFO */
+            .project-info {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .project-num {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                font-size: 16px;
+                font-family: monospace;
+                font-weight: 600;
+                color: #38bdf8;
+                margin-bottom: 24px;
+            }
+
+            .project-year {
+                font-size: 12px;
+                color: rgba(255,255,255,0.4);
+                border: 1px solid rgba(255,255,255,0.1);
+                padding: 4px 10px;
+                border-radius: 12px;
+            }
+
+            .project-info h3 {
+                font-size: clamp(32px, 4vw, 48px);
+                font-weight: 800;
+                color: #fff;
+                line-height: 1.1;
+                margin-bottom: 24px;
+                letter-spacing: -0.02em;
+            }
+
+            .project-tags {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-bottom: 30px;
+            }
+
+            .tag {
+                background: rgba(255, 255, 255, 0.03);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                color: #94a3b8;
+                padding: 6px 14px;
+                border-radius: 8px;
+                font-size: 12px;
+                letter-spacing: 0.05em;
+            }
+
+            .project-desc {
+                font-size: 17px;
+                line-height: 1.7;
+                color: rgba(255, 255, 255, 0.6);
+                margin-bottom: 40px;
+                max-width: 500px;
+            }
+
+            .view-btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                align-self: flex-start;
+                padding: 16px 32px;
+                background: #fff;
+                color: #0f172a;
+                font-weight: 700;
+                font-size: 14px;
+                letter-spacing: 0.05em;
+                text-transform: uppercase;
+                border-radius: 50px;
+                text-decoration: none;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                box-shadow: 0 10px 20px rgba(255,255,255,0.1);
+            }
+
+            .view-btn:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 15px 30px rgba(255,255,255,0.2);
+            }
+
+            @media (max-width: 1024px) {
+                .project-row {
+                    grid-template-columns: 1fr;
+                    gap: 40px;
+                    direction: ltr; /* Reset flip on mobile */
+                }
+
+                .project-row:nth-child(even) .project-visual {
+                    order: -1; /* Always show visual first on mobile */
+                }
+
+                .project-info {
+                    padding: 0 10px;
+                }
+
+                .projects-container {
+                    gap: 100px;
+                }
+            }
+        `}</style>
     </section>
   );
-};
-
-export default Projects;
+}

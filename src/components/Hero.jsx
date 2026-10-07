@@ -1,147 +1,87 @@
+"use client";
 import React from 'react';
-import { motion } from 'framer-motion';
-import { ArrowDownRight, Terminal } from 'lucide-react';
-import { soundFx } from '../utils/audio';
-
-const Hero = ({ openTerminal }) => {
+export default function Hero() {
   return (
-    <section
-      id="hero"
-      style={{
-        minHeight: '92vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        paddingTop: '9.5rem',
-        paddingBottom: '5rem',
-        position: 'relative',
-        zIndex: 2,
-      }}
-    >
-      <div className="container">
-        
-        {/* Section Numbering Tag */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="section-num-tag"
-        >
-          01 — INTRO
-        </motion.div>
+    <section className="hero" id="home">
+      <video
+        id="heroVideo"
+        className="hero-video"
+        autoPlay
+        muted
+        loop
+        playsInline
+      >
+        <source src="/assets/hero-bg.mp4" type="video/mp4" />
+      </video>
+      <div className="hero-overlay"></div>
+      <div className="hero-grid"></div>
+      
+      <div className="hero-content reveal">
+        <div className="hero-top">
+            PENDYALA SHANKAR
+            <span className="hero-top-line"></span>
+            AI DEVELOPER x WEB DEVELOPER
+        </div>
 
-        {/* Shorter Clean Headline */}
-        <motion.h1
-          initial={{ opacity: 0, y: 25 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.15 }}
-          className="editorial-display"
-          style={{ marginBottom: '1.5rem', maxWidth: '900px' }}
-        >
-          PENDYALA <br />
-          <span style={{ color: 'var(--text-secondary)' }}>SHANKAR</span>
-        </motion.h1>
+        <div className="hero-main">
+            <div className="hero-left">
+                <div className="hero-eyebrow">
+                    <span></span>
+                    CREATIVE DIGITAL EXPERIENCES
+                </div>
+                <h1>
+                    I turn <em>ideas</em> <br />
+                    into robust <br />
+                    software.
+                </h1>
+                <p>
+                    Computer Science undergraduate and 3x hackathon-winning full-stack developer with a passion for building scalable, data-driven applications.
+                </p>
 
-        {/* Clear Subtitle Role Tag */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.25 }}
-          style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: 'clamp(0.9rem, 1.8vw, 1.15rem)',
-            color: 'var(--accent-cyan)',
-            letterSpacing: '0.12em',
-            textTransform: 'uppercase',
-            marginBottom: '2rem',
-            fontWeight: 700,
-            display: 'flex',
-            alignItems: 'center',
-            gap: '1rem',
-            flexWrap: 'wrap',
-          }}
-        >
-          <span>COMPUTER SCIENCE STUDENT</span>
-          <span style={{ color: 'var(--text-muted)' }}>—</span>
-          <span>SOFTWARE DEVELOPER</span>
-        </motion.div>
+                <div className="hero-buttons">
+                    <a href="#projects" className="btn btn-light">VIEW MY WORK ↗</a>
+                    <button className="watch-button" id="introTrigger">
+                        <div className="play-circle">▶</div>
+                        <div>
+                            <strong>WATCH INTRO</strong>
+                            <small>PLAY VIDEO</small>
+                        </div>
+                    </button>
+                </div>
+            </div>
 
-        {/* Authentic High-Contrast Supporting Text */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.35 }}
-          style={{
-            fontSize: 'clamp(1.1rem, 2.2vw, 1.4rem)',
-            color: 'var(--text-primary)',
-            maxWidth: '800px',
-            lineHeight: 1.6,
-            marginBottom: '3rem',
-            fontWeight: 400,
-          }}
-        >
-          Undergraduate student at <strong style={{ color: '#ffffff' }}>MVSREC</strong> (CPI 8.90). Building practical software, exploring new technologies, and turning ideas into working products with <strong>Python, React, RESTful APIs, and MySQL</strong>.
-        </motion.p>
+            <div className="hero-right">
+                <div className="hero-right-heading">CURRENTLY</div>
+                <div className="hero-roles">
+                    <span>FULL-STACK DEV</span>
+                    <span>AI / ML</span>
+                    <span>DATA ANALYTICS</span>
+                </div>
 
-        {/* CTA Controls */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.45 }}
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            alignItems: 'center',
-            gap: '1.25rem',
-            marginBottom: '4.5rem',
-          }}
-        >
-          <a
-            href="#projects"
-            onClick={() => soundFx.playClick()}
-            className="scfo-btn scfo-btn-primary"
-          >
-            <span>VIEW PROJECTS [03]</span>
-            <ArrowDownRight size={15} />
-          </a>
+                <div className="hero-experience">
+                    <strong>03<span>x</span></strong>
+                    <span>HACKATHON<br/>WINNER</span>
+                </div>
 
-          <button
-            onClick={() => {
-              soundFx.playChime();
-              openTerminal();
-            }}
-            className="scfo-btn scfo-btn-outline"
-          >
-            <Terminal size={14} />
-            <span>TERMINAL CLI (CTRL+K)</span>
-          </button>
-        </motion.div>
-
-        {/* Technical Footer Bar */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            fontFamily: 'var(--font-mono)',
-            fontSize: '0.75rem',
-            color: 'var(--text-muted)',
-            letterSpacing: '0.12em',
-            borderTop: '1px solid var(--border-subtle)',
-            paddingTop: '1.5rem',
-          }}
-        >
-          <span>HYDERABAD, INDIA</span>
-          <div style={{ width: '80px', height: '1px', background: 'var(--border-subtle)' }} />
-          <span>SCROLL TO EXPLORE PROJECTS</span>
-        </motion.div>
-
+                <div className="availability">
+                    <i></i>
+                    <span>AVAILABLE FOR<br/>SELECTED PROJECTS</span>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div className="video-modal" id="introModal" aria-hidden="true">
+        <button className="modal-close" id="modalClose">&times;</button>
+        <div className="modal-container">
+            <div className="modal-header">
+                <span>INTRODUCTION</span>
+                <span>ESC to close</span>
+            </div>
+            <video id="introVideo" controls playsInline>
+                <source src="/assets/intro.mp4" type="video/mp4" />
+            </video>
+        </div>
       </div>
     </section>
   );
-};
-
-export default Hero;
+}
