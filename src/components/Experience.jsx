@@ -15,7 +15,7 @@ export default function Experience() {
                     <em>work.</em>
                 </h2>
                 <p>
-                    A comprehensive look at my professional experience, academic background, and the skills I've developed along the way.
+                    A comprehensive look at my professional experience, academic background, and the skills I&apos;ve developed along the way.
                 </p>
                 
                 <div className="resume-buttons">
